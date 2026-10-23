@@ -1,0 +1,57 @@
+/* Nexus visual enhancements: animation + polish only, no layout changes */
+@keyframes nxUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes nxPop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+@keyframes nxPulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}100%{box-shadow:0 0 0 12px rgba(34,197,94,0)}}
+@keyframes nxShine{to{background-position:200% 0}}
+@keyframes nxFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes nxBar{from{background-position:0 0}to{background-position:40px 0}}
+@keyframes nxBg{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+body{background:linear-gradient(120deg,#f0fdf4,#f7f8f3 40%,#fff7ed 75%,#ecfeff);background-size:300% 300%;animation:nxBg 22s ease infinite}
+
+.panel,.welcome-card,.overview-panel,.impact-dashboard,.review-card,.quote-card{animation:nxUp .55s cubic-bezier(.2,.8,.2,1) both;transition:box-shadow .25s,transform .25s}
+.panel:hover,.welcome-card:hover,.overview-panel:hover{box-shadow:0 18px 40px rgba(32,55,46,.10)}
+
+.role-card,.catalogue-card,.task-card,.delivery-card,.impact-stat,.stats-grid > *,.pulse-grid > *,.activity-item,.welcome-grid > *{animation:nxPop .45s ease both;transition:transform .2s ease,box-shadow .2s ease,border-color .2s}
+.role-card:hover,.catalogue-card:hover,.task-card:hover,.delivery-card:hover,.impact-stat:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(32,55,46,.12)}
+.role-grid > *:nth-child(2),.catalogue-grid > *:nth-child(2),.stats-grid > *:nth-child(2){animation-delay:.06s}
+.role-grid > *:nth-child(3),.catalogue-grid > *:nth-child(3),.stats-grid > *:nth-child(3){animation-delay:.12s}
+.role-grid > *:nth-child(4),.catalogue-grid > *:nth-child(4),.stats-grid > *:nth-child(4){animation-delay:.18s}
+.catalogue-grid > *:nth-child(n+5){animation-delay:.24s}
+.role-card.selected{box-shadow:0 0 0 3px rgba(34,197,94,.25),0 12px 28px rgba(32,55,46,.12)}
+.role-card.selected .role-icon,.welcome-icon,.stat-icon{animation:nxFloat 3s ease-in-out infinite}
+
+.primary{background-image:linear-gradient(90deg,#166534,#16a34a,#0f766e,#166534)!important;background-size:250% 100%!important;transition:background-position .5s,transform .15s,box-shadow .2s!important}
+.primary:hover{background-position:100% 0!important;transform:translateY(-1px);box-shadow:0 10px 22px rgba(22,101,52,.3)}
+.primary:active,.secondary:active,.ghost-button:active{transform:scale(.97)}
+.secondary,.ghost-button,.icon-button,.text-button{transition:transform .15s,background .2s,box-shadow .2s}
+.secondary:hover,.ghost-button:hover,.icon-button:hover{transform:translateY(-1px)}
+
+h1{background:linear-gradient(90deg,#14532d,#16a34a,#d97706,#14532d);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:nxShine 7s linear infinite}
+
+.live-dot,.connection-dot,.pulse-chip::before{animation:nxPulse 1.8s ease-out infinite;border-radius:50%}
+.brand-mark{transition:transform .4s}.brand:hover .brand-mark{transform:rotate(-12deg) scale(1.08)}
+
+.progress-track > *,.delivery-track > *{background-image:linear-gradient(45deg,rgba(255,255,255,.25) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.25) 50%,rgba(255,255,255,.25) 75%,transparent 75%);background-size:40px 40px;animation:nxBar 1s linear infinite;transition:width .6s ease}
+.step-item,.mini-step{transition:all .3s}
+.step-item.active,.mini-step.active{transform:scale(1.04)}
+
+.map,.map-wrap,.overview-map{border-radius:16px;overflow:hidden;animation:nxPop .6s ease both}
+.nexus-marker{animation:nxFloat 2.4s ease-in-out infinite}
+.inline-notice,.success-head{animation:nxPop .4s ease both}
+.empty-state{animation:nxUp .5s ease both;opacity:.9}
+.topbar{backdrop-filter:blur(10px);background:rgba(255,255,255,.75)!important;position:sticky;top:0;z-index:20}
+input,select,textarea{transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(34,197,94,.18)}
+@media (prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}}
+
+/* Item images on category cards */
+.catalogue-card{position:relative;overflow:hidden}
+.item-art{display:grid;place-items:center;width:64px;height:64px;font-size:38px;border-radius:18px;margin-bottom:12px;background:radial-gradient(circle at 30% 30%,#ffffff,#e8f5e9 70%);box-shadow:inset 0 0 0 1px rgba(32,55,46,.08),0 6px 14px rgba(32,55,46,.08);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.catalogue-card:hover .item-art{transform:scale(1.12) rotate(-6deg)}
+.catalogue-card.selected .item-art{background:radial-gradient(circle at 30% 30%,#fff,#bbf7d0 75%);transform:scale(1.06)}
+.catalogue-card::after{content:"";position:absolute;right:-30px;bottom:-30px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(34,197,94,.10),transparent 70%);transition:transform .4s}
+.catalogue-card:hover::after{transform:scale(1.5)}
+.catalogue-grid.compact .item-art{width:44px;height:44px;font-size:26px;border-radius:12px;margin-bottom:8px}
+.brand-mark img{width:100%;height:100%;object-fit:contain;display:block}
+.brand-mark{background:transparent!important;padding:0!important}
