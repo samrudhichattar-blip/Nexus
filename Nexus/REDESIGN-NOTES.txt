@@ -1,0 +1,16 @@
+NEXUS — REAL PROJECT UI REFRESH
+
+This ZIP is based on the Nexus.zip uploaded by you. It retains the existing React workflows, API server, map, and app logic. It applies a shared visual refresh across the current screens and adds the missing `npm run api` script.
+
+Run:
+1. Extract this ZIP into a NEW folder.
+2. Open that folder in VS Code.
+3. Run `npm install`
+4. Terminal 1: `npm run api`
+5. Terminal 2: `npm run dev`
+6. Open the Vite URL shown in the terminal.
+
+Important:
+- Do not extract over your existing Nexus folder.
+- The visual changes are primarily shared CSS, so they apply across the existing workflow screens.
+- This bundle has not been run through a full local dependency install/build in this environment. If `npm run build` reports an error, share the full error output so it can be fixed.
