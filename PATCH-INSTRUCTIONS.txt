@@ -1,0 +1,7 @@
+NEXUS update bundle
+1. Stop the Vite server with Ctrl+C.
+2. Extract this ZIP into your existing Nexus project folder and allow overwrite for src/App.tsx, src/App.css, src/index.css, src/main.tsx and public/manifest.webmanifest.
+3. Ensure index.html contains <link rel="manifest" href="/manifest.webmanifest"> inside <head>. Do not overwrite your package.json.
+4. Run: npm run dev
+5. Then test the welcome → role → location → workflow flow.
+6. Data currently uses localStorage in this browser only. It is not shared across laptops. Real authentication, geocoding search, backend sync, routing ETA, reservations and secure medical/infant-supply checks still need integration.
