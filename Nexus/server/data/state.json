@@ -1,5 +1,31 @@
 {
-  "donations": [],
+  "donations": [
+    {
+      "id": "c7f22c41-ea6a-4411-8127-b23a49aa8967",
+      "items": [
+        {
+          "name": "Essential hygiene kits",
+          "unit": "kits",
+          "qty": 1
+        },
+        {
+          "name": "Infant supplies",
+          "unit": "packs",
+          "qty": 1
+        }
+      ],
+      "point": {
+        "lat": 18.5204,
+        "lng": 73.8567,
+        "label": "Pune community location"
+      },
+      "createdAt": 1792752132137,
+      "status": "Available",
+      "deadline": 1792838532137,
+      "notes": "handle carefuly",
+      "contact": ""
+    }
+  ],
   "demands": [],
   "deliveries": []
 }

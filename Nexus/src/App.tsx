@@ -111,6 +111,8 @@ export default function App() {
   const [notice, setNotice] = useState("");
   const [apiReady, setApiReady] = useState(false);
   const [backendConnected, setBackendConnected] = useState(false);
+  const [lastSaved, setLastSaved] = useState<number | null>(null);
+  const [saveError, setSaveError] = useState(false);
 
   // Load shared state from the Express API first. If the API is not running,
   // continue in local-demo mode without losing the browser's saved records.
@@ -148,7 +150,9 @@ export default function App() {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ donations, demands, deliveries })
-      }).catch(() => setBackendConnected(false));
+      })
+        .then(r => { if (!r.ok) throw new Error("save failed"); setLastSaved(Date.now()); setSaveError(false); })
+        .catch(() => setSaveError(true));
     }
   }, [apiReady, backendConnected, donations, demands, deliveries]);
 
@@ -246,7 +250,7 @@ export default function App() {
   return <div className="app-shell">
     <header className="topbar">
       <button className="brand" onClick={() => setStep(0)} aria-label="NEXUS home"><span className="brand-mark"><img src="/nexus-logo.png" alt="" width="40" height="40"/></span><span>NEXUS<small>Food • Care • Connection</small></span></button>
-      <div className="top-actions"><span className={`demo-pill ${backendConnected ? "backend-on" : ""}`}><span className="connection-dot"/>{backendConnected ? "BACKEND CONNECTED" : "DEMO MODE"}</span><button className="ghost-button" onClick={() => { setStep(1); setNotice(""); }}>Switch role</button></div>
+      <div className="top-actions"><span className={`demo-pill ${backendConnected ? "backend-on" : ""}`}><span className="connection-dot"/>{backendConnected ? (saveError ? "SAVE FAILED · RETRYING" : lastSaved ? `SAVED TO SERVER · ${new Date(lastSaved).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}` : "BACKEND CONNECTED") : "DEMO MODE"}</span><button className="ghost-button" onClick={() => { setStep(1); setNotice(""); }}>Switch role</button></div>
     </header>
     <main className="main-wrap">
       <section className="intro-row"><div><p className="eyebrow">COMMUNITY AID, BETTER CONNECTED</p><h1>{title}</h1><p className="intro-copy">{step === 0 ? "Connecting surplus to those who need it — with time-aware, location-aware community logistics." : step === 1 ? "Choose a role and NEXUS will tailor the workflow." : step === 2 ? "GPS, typed landmarks and selected map pins remain explicit choices." : step === 3 ? "Make each donation, need and delivery status clear and accountable." : backendConnected ? "Records are saved by the local backend and can be shared by browser sessions using this running server." : "Demo records are saved in this browser. Start the backend for shared server-side persistence."}</p></div><div className="hero-stamp"><ShieldCheck size={24}/><span>Safety-first<br/><b>community logistics</b></span></div></section>
